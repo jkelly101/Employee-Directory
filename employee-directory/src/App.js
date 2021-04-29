@@ -12,13 +12,13 @@ class App extends Component {
   }
 
   componenetDidMount() {
-    API.getUsers()
-      .then((response) => {
-        this.setState({
-          items: response.results,
-          loading: true,
-        });
+    API.getUsers().then((response) => {
+      console.log(response);
+      this.setState({
+        items: response.results,
+        loading: true,
       });
+    });
   }
 
   // state = {
@@ -43,9 +43,10 @@ class App extends Component {
       return <div>Loading...</div>;
     } else {
       return (
-      // what will show on page
-      <Title>Employee Directory</Title>;
-    )}
+        // what will show on page
+        <Title>Employee Directory</Title>
+      );
+    }
   }
 }
 
