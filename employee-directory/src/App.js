@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import "./App.css";
-import Title from "./src/components/Title";
+import API from "./utils/API.js";
+import Title from "./components/Title";
 
 class App extends Component {
   constructor(props) {
@@ -12,8 +12,7 @@ class App extends Component {
   }
 
   componenetDidMount() {
-    fetch("https://randomuser.me/api/")
-      .then((response) => response.json())
+    API.getUsers()
       .then((response) => {
         this.setState({
           items: response.results,
@@ -43,10 +42,10 @@ class App extends Component {
     if (!loading) {
       return <div>Loading...</div>;
     } else {
-      return;
+      return (
       // what will show on page
       <Title>Employee Directory</Title>;
-    }
+    )}
   }
 }
 
