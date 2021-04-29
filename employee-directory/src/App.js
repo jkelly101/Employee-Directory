@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import API from "./utils/API.js";
 import Title from "./components/Title";
+import Search from "./components/Search";
+import EmployeeCard from "./components/EmployeeCard";
 
 class App extends Component {
   constructor(props) {
