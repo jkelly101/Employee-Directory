@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import API from "./utils/API.js";
 import Title from "./components/Title";
-import Search from "./components/Search";
+// import Search from "./components/Search";
 import EmployeeCard from "./components/EmployeeCard";
 
 class App extends Component {
@@ -13,11 +13,11 @@ class App extends Component {
     };
   }
 
-  componenetDidMount() {
+  componentDidMount() {
     API.getUsers().then((response) => {
       console.log(response);
       this.setState({
-        items: response.results,
+        items: response.data.results,
         loading: true,
       });
     });
@@ -46,7 +46,10 @@ class App extends Component {
     } else {
       return (
         // what will show on page
-        <Title>Employee Directory</Title>
+        <div>
+          <Title>Employee Directory</Title>
+          <EmployeeCard />
+        </div>
       );
     }
   }
