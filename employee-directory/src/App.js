@@ -16,9 +16,18 @@ class App extends Component {
   componentDidMount() {
     API.getUsers().then((response) => {
       console.log(response);
+      let tempEmployeeArray = [];
+      response.data.results.forEach((employee) => {
+        let newEmployee = {
+          name: `${employee.name.first} ${employee.name.last}`,
+          email: employee.email,
+        };
+        tempEmployeeArray.push(newEmployee);
+      });
       this.setState({
-        items: response.data.results,
+        items: tempEmployeeArray,
         loading: true,
+        sortBy: "asc",
       });
     });
   }
@@ -27,19 +36,55 @@ class App extends Component {
   //   employees: [...employees],
   // };
 
-  // handleSort = (key, asc) => {
-  //   let employeesSorted = [...this.state.employees];
+  handleSort = (event) => {
+    let name = event.target.getAttribute("name");
+    // if (name === "first") {
+    //   name = `name.${first}`;
+    // }
+    // else if (name === "email") {
 
-  //   // add additional sort options
-  //   employeesSorted.sort((a, b) => {
-  //     return a[key] > b[key] ? asc * 1 : asc - 1;
-  //   });
+    // }
+    let currentSort = this.state.sortBy;
+    let employeesSorted = this.state.items;
+    // let key = name.first;
+    if (currentSort === "asc") {
+      this.setState({ sortBy: "desc" });
+      employeesSorted.sort((a, b) => {
+        var x = a[name].toLowerCase();
+        var y = b[name].toLowerCase();
+        if (x < y) {
+          return -1;
+        }
+        if (x > y) {
+          return 1;
+        }
+        return 0;
+      });
+    } else {
+      this.setState({ sortBy: "asc" });
+      employeesSorted.sort((a, b) => {
+        var x = a[name].toLowerCase();
+        var y = b[name].toLowerCase();
+        if (x < y) {
+          return 1;
+        }
+        if (x > y) {
+          return -1;
+        }
+        return 0;
+      });
+    }
 
-  //   this.setState({ employees: employeesSorted });
-  // };
+    // add additional sort options
+    // employeesSorted.sort((a, b) => {
+    //   return a["name.first"] > b["name.first"] ? asc * 1 : asc - 1;
+    // });
+
+    this.setState({ items: employeesSorted });
+  };
 
   render() {
-    var { items, loading } = this.state;
+    var { loading } = this.state;
 
     if (!loading) {
       return <div>Loading...</div>;
@@ -48,7 +93,10 @@ class App extends Component {
         // what will show on page
         <div>
           <Title>Employee Directory</Title>
-          <EmployeeCard />
+          <EmployeeCard
+            employeeArr={this.state.items}
+            sortTable={this.handleSort}
+          />
         </div>
       );
     }
