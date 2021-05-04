@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import API from "./utils/API.js";
 import Title from "./components/Title";
-// import Search from "./components/Search";
 import EmployeeCard from "./components/EmployeeCard";
 
 class App extends Component {
@@ -19,7 +18,12 @@ class App extends Component {
       let tempEmployeeArray = [];
       response.data.results.forEach((employee) => {
         let newEmployee = {
-          name: `${employee.name.first} ${employee.name.last}`,
+          firstName: `${employee.name.first}`,
+          lastName: `${employee.name.last}`,
+          age: `${employee.dob.age}`,
+          gender: `${employee.gender}`,
+          nat: employee.nat,
+          cell: employee.cell,
           email: employee.email,
         };
         tempEmployeeArray.push(newEmployee);

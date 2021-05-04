@@ -2,26 +2,43 @@ import React from "react";
 import "./style.css";
 
 function EmployeeCard(props) {
-  let first = "first";
   return (
     <table className="table">
       <thead>
         <tr>
-          <th onClick={props.sortTable} name="name" scope="col">
-            Name
+          <th onClick={props.sortTable} name="firstName" scope="col">
+            First Name
+          </th>
+          <th onClick={props.sortTable} name="lastName" scope="col">
+            Last Name
+          </th>
+          <th onClick={props.sortTable} name="age" scope="col">
+            Age
+          </th>
+          <th onClick={props.sortTable} name="gender" scope="col">
+            Gender
+          </th>
+          <th onClick={props.sortTable} name="nat" scope="col">
+            Nationality
+          </th>
+          <th onClick={props.sortTable} name="cell" scope="col">
+            Cell
           </th>
           <th onClick={props.sortTable} name="email" scope="col">
             Email
           </th>
-          <th scope="col">Handle</th>
         </tr>
       </thead>
       <tbody>
         {props.employeeArr.map((employee, i) => (
           <tr key={`employee-${i + 1}`}>
-            <td>{employee.name}</td>
+            <td>{employee.firstName}</td>
+            <td>{employee.lastName}</td>
+            <td>{employee.age}</td>
+            <td>{employee.gender}</td>
+            <td>{employee.nat}</td>
+            <td>{employee.cell}</td>
             <td>{employee.email}</td>
-            <td>@mdo</td>
           </tr>
         ))}
       </tbody>
