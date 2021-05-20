@@ -4,6 +4,10 @@ The Employee Directory is a React App that gives the User quick access to inform
 
 ![Employee Table](./employee-directory/assets/images/employee-directory2.png)
 
+## Deployed App
+
+View deployed app here: ![Employee Directory](https://jkelly101.github.io/Employee-Directory/)
+
 ## License
 
 ![MIT License](https://shields.io/badge/license-MIT-green)
