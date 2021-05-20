@@ -2,7 +2,7 @@
 
 The Employee Directory is a React App that gives the User quick access to information of all employees at once. The User is able to sort the employees by First & Last Name, Age, Gender, Nationality, Cell Phone or Email.
 
-![Employee Table](./employee-directory/assets/images/employee-directory.png)
+![Employee Table](./employee-directory/assets/images/employee-directory2.png)
 
 ## License
 
