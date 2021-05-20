@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import API from "./utils/API.js";
 import Title from "./components/Title";
 import EmployeeCard from "./components/EmployeeCard";
+import SearchBar from "./components/SearchBar/searchbar.js";
 
 class App extends Component {
   constructor(props) {
@@ -36,18 +37,35 @@ class App extends Component {
     });
   }
 
-  // state = {
-  //   employees: [...employees],
-  // };
+  handleInputChange = event => {
+    const name = event.target.name;
+    const value= event.target.value;
+    this.setState({
+      [name]: value
+    });
+  };
+
+  handleFormSubmit = (event) => {
+    event.preventDefault();
+    console.log(this.state.search);
+    let search = this.state.search.toLowerCase();
+    let filteredEmployees = this.state.items;
+    filteredEmployees = filteredEmployees.filter((employee) => {
+      console.log(employee);
+      return (
+        employee.name.first.toLowerCase().includes(search) ||
+        employee.name.last.toLowerCase().includes(search) ||
+        employee.email.toLowerCase().includes(search) ||
+        employee.cell
+          .includes(search)
+      );
+    });
+    console.log(filteredEmployees);
+  };
 
   handleSort = (event) => {
     let name = event.target.getAttribute("name");
-    // if (name === "first") {
-    //   name = `name.${first}`;
-    // }
-    // else if (name === "email") {
 
-    // }
     let currentSort = this.state.sortBy;
     let employeesSorted = this.state.items;
     // let key = name.first;
@@ -97,6 +115,7 @@ class App extends Component {
         // what will show on page
         <div>
           <Title>Employee Directory</Title>
+          <SearchBar />
           <EmployeeCard
             employeeArr={this.state.items}
             sortTable={this.handleSort}
